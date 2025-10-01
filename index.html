@@ -210,39 +210,34 @@ if (gameArea.contains(target) && !target.hit) {
       };
     }
 
-function startGame() {
+function startGame(initialDelay = 5) {  // default 5 seconds
   score = 0;
   lives = 5;
   scoreDisplay.innerText = 'Beatings Given: 0';
   updateLives();
   restartBtn.style.display = 'none';
 
-  // Create and show countdown message
   const countdown = document.createElement('p');
   countdown.id = 'countdown';
   countdown.style.fontSize = '20px';
   countdown.style.color = '#333';
   countdown.style.marginTop = '10px';
-  countdown.innerText = "Game starts in 5...";
+  countdown.innerText = `Game starts in ${initialDelay}...`;
   document.body.insertBefore(countdown, gameArea);
 
-  let counter = 5;
+  let counter = initialDelay;
   const countdownInterval = setInterval(() => {
     counter--;
     if (counter > 0) {
       countdown.innerText = `Game starts in ${counter}...`;
     } else {
-      countdown.remove();           // remove countdown text
+      countdown.remove();
       clearInterval(countdownInterval);
- gameInterval = setInterval(() => {
-  let howMany = Math.floor(Math.random() * 2) + 1; // spawns 1–2 targets each second
-  for (let i = 0; i < howMany; i++) {
-    spawnTarget();
-  }
-}, 1000);
+      gameInterval = setInterval(spawnTarget, 1000); // start spawning targets
     }
   }, 1000);
 }
+
 
 function gameOver() {
   clearInterval(gameInterval); // stop spawning targets
@@ -258,10 +253,10 @@ function gameOver() {
   restartBtn.style.display = 'inline-block';
 }
 
-    function restartGame() { startGame(); }
+    function restartGame() { startGame(5); }
 
     // Start automatically
-    startGame();
+    startGame(10);
   </script>
 </body>
 </html>
