@@ -4,10 +4,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BEAT SAAD UP</title>
   <style>
-    body { font-family: sans-serif; text-align: center; background: #fff8fd; border: 8px dashed #ffe9e8;
+    body { font-family: sans-serif; text-align: center; background: #fff8fd; border: 8px dashed #ffe9e8; margin: 0;
+  padding: 10px;           /* default padding for all screens */
+  box-sizing: border-box;
   border-radius: 20px }
-    #actions { margin: 20px; }
-    #actions button { padding: 10px 20px; background:#ffe9e8; margin: 0 10px; font-size: 16px; cursor: pointer; }
+    #actions {
+  display: flex;
+  flex-wrap: wrap;          /* wrap buttons to next line on small screens */
+  justify-content: center;  /* center buttons horizontally */
+  gap: 10px;                /* space between buttons */
+  margin: 20px 0;
+}
+
+#actions button {
+  flex: 1 1 45%;            /* take up ~45% width, wrap nicely on small screens */
+  max-width: 150px;         /* optional max width */
+  padding: 12px 20px;       /* vertical and horizontal padding */
+  font-size: 16px;
+  cursor: pointer;
+  background: #ffe9e8;      /* button background */
+  color: #000;              /* black text */
+  border: 2px solid #000; /* orange-ish border */
+  border-radius: 8px;       /* rounded corners */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* subtle shadow */
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
 #actions button:active {
   transform: scale(0.95);
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
