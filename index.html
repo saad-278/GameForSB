@@ -43,7 +43,22 @@
   max-height: 400px; border: 2px solid black; margin: 0 auto 40px; background: #ffe7f9; overflow: hidden; cursor: auto; }
     .target { position: absolute; height: auto; cursor: pointer; border-radius: 10px; }
     .hitEmoji { position: absolute; font-size: 40px; pointer-events: none; }
-    #restartBtn { display: none; padding: 10px 20px; font-size: 18px; margin-top: 20px; margin-bottom: 30px; cursor: pointer; }
+    #restartBtn {
+  display: none;
+  padding: 10px 20px;       /* same as action buttons */
+  font-size: 16px;          /* same as action buttons */
+  margin: 0 10px 20px 10px; /* spacing like action buttons + bottom margin */
+  background: #ffe9e8;      /* same as action buttons */
+  cursor: pointer;
+  border-radius: 5px;       /* match buttons if they have rounded corners */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* optional subtle shadow */
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+#restartBtn:active {
+  transform: scale(0.95);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
   </style>
 </head>
 <body>
@@ -218,13 +233,7 @@ function startGame() {
     } else {
       countdown.remove();           // remove countdown text
       clearInterval(countdownInterval);
-    gameInterval = setInterval(() => {
-  let howMany = Math.floor(Math.random() * 2) + 1; // spawns 1–2 targets each second
-  for (let i = 0; i < howMany; i++) {
-    spawnTarget();
-  }
-}, 1000);
-    }
+gameInterval = setInterval(spawnTarget, 1000);
   }, 1000);
 }
 
